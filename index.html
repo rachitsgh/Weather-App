@@ -23,8 +23,58 @@
                 <!-- grant container -->
                 <div class="grant-container">
                     <img src="./assets/location.png" alt="location icon" width="80" height="80" loading="lazy">
-
+                    <p>grant location Access</p>
+                    <p>Allow Access to get Weather Information</p>
+                    <button class="btn" data-grantAccess>Grant Access</button>
                 </div>
+                <!-- Search form -->
+                <form action="" class="form-container" data-searchForm>
+                    <input placeholder="Search for city..." data-searchInput>
+                    <button class="btn">
+                        <img src="./assets/search.png" alt="search icon" width="20" height="20" loading="lazy">
+                    </button>
+                 </form>
+                 <!-- Loading Screen Container -->
+                 <div class="loading-container">
+                    <img src="./assets/loading.gif" alt="loading gif" width="150" height="150">
+                    <p>Loading</p>
+                 </div>
+                 <!-- Show weather info -->
+                 <div class="user-info-container">
+                    <!-- city name and Flag -->
+                    <div class="name">
+                        <p> data-cityName</p>
+                        <img data-countryIcon>
+                    </div>
+                    <!-- weather description -->
+                    <p data-weatherDesc></p>
+                    <!-- weather icon -->
+                    <img data-weatherIcon>
+                    <!-- temprature display -->
+                    <p data-temp></p>
+                    <!-- 3 cards - Parameters -->
+                    <div class="parameter-container">
+                        <!-- card 1 -->
+                        <div class="parameter">
+                            <img src="./assets/wind.png">
+                            <p>windspeed</p>
+                            <p data-windspeed></p>
+                        </div>
+
+                        <!-- card 2 -->
+                        <div class="parameter">
+                            <img src="./assets/humidity.png">
+                            <p>humidity</p>
+                            <p data-humidity></p>
+                        </div>
+                        <!-- card 3 -->
+                        <div class="parameter">
+                            <img src="./assets/cloud.png">
+                            <p>clouds</p>
+                            <p data-clouds></p>
+                        </div>
+                    </div>
+                 </div>
             </div>
     </div>
     <script src="script.js"></script>
