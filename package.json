@@ -1,4 +1,5 @@
 {
+  "scripts": {"start": "vite"},
   "devDependencies": {
     "autoprefixer": "^10.4.16",
     "post": "^0.0.1",
