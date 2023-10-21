@@ -8,43 +8,43 @@
     <link rel="stylesheet" href="main.css" class="rel">
 </head>
 <body>
-    <div class="wrapper">
+    <div class="wrapper h-[100vh] w-[100vw] text-[var(--colorLight2)] flex justify-center">
         <div class="container">
-            <h1>Weather App</h1>
+            <h1 class="text-center uppercase pt-[20px]">Weather App</h1>
 
             <!-- tab Container -->
-            <div class="tab-container">
-                <div class="tab" data-userWeather>My Weather</div>
-                <div class="tab" data-searchWeather>Search Weather</div>
-                <div class="tab" data-myCities>My Cities</div>
+            <div class="tab-container w-[90%] max-w-[550px] flex justify-between mx-auto my-0 mt-[4rem]">
+                <div class="tab cursor-pointer font-[0.875rem] tracking-[1.75px] py-[5px] pz-[8px]" data-userWeather>My Weather</div>
+                <div class="tab cursor-pointer font-[0.875rem] tracking-[1.75px] py-[5px] pz-[8px]" data-searchWeather>Search Weather</div>
+                <div class="tab cursor-pointer font-[0.875rem] tracking-[1.75px] py-[5px] pz-[8px]" data-myCities>My Cities</div>
             </div>
             <!-- Weather Container -->
             <div class="weather-location-container">
                 <!-- grant container -->
-                <div class="grant-container">
+                <div class="grant-container sub-container">
                     <img src="./assets/location.png" alt="location icon" width="80" height="80" loading="lazy">
                     <p>grant location Access</p>
                     <p>Allow Access to get Weather Information</p>
-                    <button class="btn" data-grantAccess>Grant Access</button>
+                    <button class="btn font-[0.85rem] uppercase text-[var(--colorDark2)] cursor-pointer" data-grantAccess>Grant Access</button>
                 </div>
                 <!-- Search form -->
                 <form action="" class="form-container" data-searchForm>
                     <input placeholder="Search for city..." data-searchInput>
-                    <button class="btn">
+                    <button class="btn" type="submit">
                         <img src="./assets/search.png" alt="search icon" width="20" height="20" loading="lazy">
                     </button>
                  </form>
                  <!-- Loading Screen Container -->
-                 <div class="loading-container">
+                 <div class="loading-container sub-container">
                     <img src="./assets/loading.gif" alt="loading gif" width="150" height="150">
                     <p>Loading</p>
                  </div>
                  <!-- Show weather info -->
-                 <div class="user-info-container">
+                 <div class="user-info-container sub-container">
                     <!-- city name and Flag -->
-                    <div class="name">
-                        <p> data-cityName</p>
-                        <img data-countryIcon>
+                    <div class="name flex">
+                        <p data-cityName class="text-[2rem]"> </p>
+                        <img data-countryIcon width="30px" height="30px">
                     </div>
                     <!-- weather description -->
                     <p data-weatherDesc></p>
@@ -53,7 +53,7 @@
                     <!-- temprature display -->
                     <p data-temp></p>
                     <!-- 3 cards - Parameters -->
-                    <div class="parameter-container">
+                    <div class="parameter-container flex justify-between w-[90%] items-center mt-[2rem]">
                         <!-- card 1 -->
                         <div class="parameter">
                             <img src="./assets/wind.png">
