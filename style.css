@@ -19,13 +19,13 @@
     background-color: rgba(219, 226, 239,0.5);
     border-radius: 4px;
 }
-.weather-location-container{
+.weather-location-container{ 
     margin-block:4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
+} 
 
 .btn{
     all: unset;
@@ -168,3 +168,50 @@
     border-radius: 100%;
     margin-bottom:1px;
 }
+
+.my-cities{
+    display: none;
+}
+
+.my-cities.active{
+    display: flex;
+}
+
+.button {
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+    height: 3rem;
+    width: 100%;
+    padding: 0 2rem;
+    border-radius: 1.5rem;
+    background: var(--colorDark2);
+    background-size: 400%;
+    color: #fff;
+    border: none;
+    margin: 2rem 10rem;
+  }
+  
+  .button:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .button-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    width: 100%;
+    height: inherit;
+    border-radius: inherit;
+    color: var(--colorDark1);
+    background: var(--colorDark1);
+    transition: all 0.475s;
+  }
