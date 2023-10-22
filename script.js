@@ -4,10 +4,13 @@ const myCitiesTab = document.querySelector("[data-myCities]");
 const userContainer = document.querySelector(".weather-container");
 
 const myCitiesInfo = document.querySelector("[data-myCitiesInfo]");
-const grantAccessContainer = document.querySelector(".weather-location-container");
+const grantAccessContainer = document.querySelector(".grant-container");
 const searchForm = document.querySelector("[data-searchForm]");
 const loadingScreen = document.querySelector(".loading-container");
 const userInfoContainer = document.querySelector(".user-info-container"); 
+
+const saveCityButton2 = document.querySelector(".button");
+const savedCitiesSection = document.querySelector(".my-cities");
 
 
 let currentTab = userTab;
@@ -28,7 +31,9 @@ function switchTab(newTab){
             myCitiesInfo.classList.remove("active");
             searchForm.classList.add("active");
         } else if (!userInfoContainer.classList.contains("active") && newTab == userTab) {
+            console.log("switche to user info")
             grantAccessContainer.classList.remove("active");
+
             myCitiesInfo.classList.remove("active");
             searchForm.classList.remove("active");
             userInfoContainer.classList.add("active");
@@ -67,12 +72,15 @@ myCitiesTab.addEventListener('click',()=>{
 
 //check if cordinates are already present in session storage
 function getfromSessionStorage() {
+    console.log("getfrmssnstrg");
     const localCoordinates = sessionStorage.getItem("user-coordinates");
     if(!localCoordinates) {
         //agar local coordinates nahi mile
-        grantAccessContainer.classList.add(".active");
+        grantAccessContainer.classList.add("active");
+        // getfromSessionStorage();
     }
     else {
+        console.log("else");
         const coordinates = JSON.parse(localCoordinates);
         fetchUserWeatherInfo(coordinates);
     }
@@ -180,3 +188,96 @@ async function fetchSearchWeatherInfo(city){
 
     }
 }
+
+
+saveCityButton2.addEventListener('click',()=>{
+    console.log("clicked");
+    save();
+});
+
+function save() {
+    console.log("nor on dave functn");
+    // Fetch the city name and temperature
+    const cityNameElement = document.querySelector("[data-cityName]");
+    const cityName = cityNameElement.textContent;
+    const savedCities = JSON.parse(localStorage.getItem('savedCities')) || [];
+    if (!savedCities.includes(cityName)) {
+        // City is not saved, so save it
+        savedCities.push(cityName);
+        localStorage.setItem('savedCities', JSON.stringify(savedCities));
+        displaySavedCityWeather(cityName);
+    } else {
+        // City is already saved, you can display a message or take appropriate action
+        alert('This city is already saved.');
+    }
+
+
+}
+
+// Function to fetch and display real-time temperature for a saved city
+async function displaySavedCityWeather(cityName) {
+    try {
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}&units=metric`
+        );
+        const data = await response.json();
+
+        // Create a new element to display the saved city
+        const savedCityElement = document.createElement('div');
+        savedCityElement.classList.add('saved-city');
+
+        // Create elements to display the city name and temperature
+        const cityNameDiv = document.createElement('div');
+        cityNameDiv.classList.add('saved-city-name');
+        cityNameDiv.textContent = cityName;
+
+        const tempDiv = document.createElement('div');
+        tempDiv.classList.add('saved-city-temp');
+        tempDiv.textContent = `${data.main.temp} °C`; // Display real-time temperature
+
+        // Create a delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.classList.add('delete-button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', () => {
+            removeSavedCity(cityName, savedCityElement);
+        });
+
+        // Append the elements to the savedCityElement
+        savedCityElement.appendChild(cityNameDiv);
+        savedCityElement.appendChild(tempDiv);
+        savedCityElement.appendChild(deleteButton);
+
+        // Append the savedCityElement to the savedCitiesSection
+        savedCitiesSection.appendChild(savedCityElement);
+    } catch (error) {
+        // Handle errors when fetching city weather
+    }
+}
+
+// Function to remove a saved city
+function removeSavedCity(cityName, savedCityElement) {
+    const savedCities = JSON.parse(localStorage.getItem('savedCities')) || [];
+    const index = savedCities.indexOf(cityName);
+    if (index !== -1) {
+        savedCities.splice(index, 1);
+        localStorage.setItem('savedCities', JSON.stringify(savedCities));
+        savedCityElement.remove(); // Remove the displayed city element
+    }
+}
+
+// Function to display saved cities
+function displaySavedCities() {
+    const savedCities = JSON.parse(localStorage.getItem('savedCities')) || [];
+    savedCities.forEach(city => {
+        displaySavedCityWeather(city);
+    });
+}
+
+// Call the function to display saved cities when the page loads
+displaySavedCities();
+
+
+
+
+
