@@ -114,7 +114,12 @@
     font-weight:700;
 }
 .parameter-container{
+    width:90%;
+    display: flex;
     gap: 10px 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
 }
 .parameter{
     border-radius: 5px;
@@ -193,11 +198,11 @@
     width: 100%;
     padding: 0 2rem;
     border-radius: 1.5rem;
-    background:var(--colorDark2);
     background-size: 400%;
     color: #fff;
     border: none;
     margin: 2rem 10rem;
+    background: black; /* Set the background color here */
   }
   
   .button:hover::before {
@@ -208,7 +213,10 @@
     position: relative;
     z-index: 1;
   }
-  
+
+  button{
+    background-colors: #DBE2EF;
+  }
   .button::before {
     content: '';
     position: absolute;
@@ -224,6 +232,25 @@
     transition: all 0.475s;
   }
 
+  .api-error-container {
+    display: none;
+}
+
+.api-error-container.active {
+    display: flex;
+    gap: 1rem 0;
+}
+
+.api-error-container p {
+    text-align: center;
+}
+
+.api-error-container img {
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
   .my-cities{
     display: none;
   }
@@ -290,3 +317,63 @@
     top: -160%;
   }
   
+
+  
+
+/* Media query for screens with a maximum width of 768px */
+@media (max-width: 768px) {
+    .parameter-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .parameter {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .parameter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .parameter img {
+        width: 60px;
+        height: 60px;
+    }
+    .parameter p:first-of-type {
+        font-size: 1rem;
+    }
+    .parameter p:last-of-type {
+        font-size: 0.9rem;
+    }
+    /* Add more responsive styles for parameters as needed */
+}
+
+/* Media query for screens with a maximum width of 480px */
+@media (max-width: 480px) {
+    .parameter-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .parameter {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .parameter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .parameter img {
+        width: 40px;
+        height: 40px;
+    }
+    .parameter p:first-of-type {
+        font-size: 0.9rem;
+    }
+    .parameter p:last-of-type {
+        font-size: 0.8rem;
+    }
+    /* Add more responsive styles for parameters as needed */
+}
+
+/* Add more media queries for other screen sizes as required */
