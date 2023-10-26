@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="main.css" class="rel">
 </head>
 <body>
-    <div class="wrapper h-[100vh] w-[100vw] text-[var(--colorLight2)] flex justify-center">
+    <div class="wrapper h-[100rem] overflow-hidden w-[100vw] text-[var(--colorLight2)] flex justify-center">
         <div class="container">
             <h1 class="text-center uppercase pt-[20px]">Weather App</h1>
 
@@ -54,7 +54,7 @@
                     <!-- temprature display -->
                     <p data-temp></p>
                     <!-- 3 cards - Parameters -->
-                    <div class="parameter-container flex justify-between w-[90%] items-center mt-[2rem]">
+                    <div class="parameter-container">
                         <!-- card 1 -->
                         <div class="parameter w-[40%] max-w-[200px] p-[1rem] flex-col items-center bg-[rgba(219,226,239,0.5)]">
                             <img src="./assets/wind.png">
@@ -77,16 +77,21 @@
                     </div>
                     <button class="button" type="submit" data-save>
                         <span class="button-content flex justify-center items-center gap-2 ">
-                            <i class="fa-solid fa-bookmark fa-lg" style="color: #f4f5f5;"></i>
+                            <i class="fa-solid fa-bookmark fa-lg" style="color:#f4f5f5;"></i>
                             <p>Save City</p>
                         </span>
                     </button>
                  </div>
+                 <!-- handle api fetch error -->
+                <div class="sub-container api-error-container">
+                    <img src="./assets/not-found.png" data-notFoundImg />
+                    <p data-apiErrorText></p>
+                    <button class="btn" data-apiErrorBtn>Retry</button>
+                </div>
                  <!-- My cities -->
                  <div class="my-cities" data-myCitiesInfo>
-                    
-                 </div>
-            </div>
+                </div>
+        </div>
     </div>
     <script src="script.js"></script>
     <script src="https://kit.fontawesome.com/8113bcbf78.js" crossorigin="anonymous"></script>
