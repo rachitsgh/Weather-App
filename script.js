@@ -2,6 +2,7 @@ const userTab = document.querySelector("[data-userWeather]");
 const searchTab = document.querySelector("[data-searchWeather]")
 const myCitiesTab = document.querySelector("[data-myCities]");
 const userContainer = document.querySelector(".weather-container");
+const apiErrorContainer = document.querySelector(".api-error-container");
 
 const myCitiesInfo = document.querySelector("[data-myCitiesInfo]");
 const grantAccessContainer = document.querySelector(".grant-container");
@@ -11,6 +12,11 @@ const userInfoContainer = document.querySelector(".user-info-container");
 
 const saveCityButton2 = document.querySelector(".button");
 const savedCitiesSection = document.querySelector(".my-cities");
+
+const apiErrorImg = document.querySelector("[data-notFoundImg]");
+const apiErrorMessage = document.querySelector("[data-apiErrorText]");
+const apiErrorBtn = document.querySelector("[data-apiErrorBtn]");
+
 
 
 let currentTab = userTab;
@@ -107,12 +113,16 @@ async function fetchUserWeatherInfo(coordinates) {
         renderWeatherInfo(data);
     }
     catch(err) {
-        // loadingScreen.classList.remove("active");
-        //HW
-
+        loadingScreen.classList.remove("active");
+        apiErrorContainer.classList.add("active");
+        apiErrorImg.style.display = "none";
+        apiErrorMessage.innerText = `Error: ${err?.message}`;
+        apiErrorBtn.addEventListener("click", () => {
+            fetchUserWeatherInfo(coordinates);
+        });
+        }
     }
 
-}
 
 function renderWeatherInfo(weatherInfo) {
     //fistly, we have to fethc the elements 
@@ -170,24 +180,31 @@ searchForm.addEventListener("submit", (e) => {
         fetchSearchWeatherInfo(cityName);
 })
 
-async function fetchSearchWeatherInfo(city){
-    loadingScreen.classList.add(".active");
-    userInfoContainer.classList.remove(".active");
-    grantAccessButton.classList.remove(".active");
-    myCitiesInfo.classList.remove(".active");
-    try{
-        const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
-        );
-        const data =await response.json();
-        loadingScreen.classList.remove("active");
-        userInfoContainer.classList.add("active");
-        renderWeatherInfo(data);
+async function fetchSearchWeatherInfo(city) {
+    loadingScreen.classList.add("active");
+    userInfoContainer.classList.remove("active");
+    apiErrorContainer.classList.remove("active");
+  
+    try {
+      const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+      );
+      const data = await res.json();
+      // console.log("Search - Api Fetch Data", data);
+      if (!data.sys) {
+        throw data;
+      }
+      loadingScreen.classList.remove("active");
+      userInfoContainer.classList.add("active");
+      renderWeatherInfo(data);
+    } catch (error) {
+      // console.log("Search - Api Fetch Error", error.message);
+      loadingScreen.classList.remove("active");
+      apiErrorContainer.classList.add("active");
+      apiErrorMessage.innerText = `${error?.message}`;
+      apiErrorBtn.style.display = "none";
     }
-    catch(err){
-
-    }
-}
+  }
 
 
 saveCityButton2.addEventListener('click',()=>{
@@ -283,6 +300,12 @@ function displaySavedCities() {
 
 // Call the function to display saved cities when the page loads
 displaySavedCities();
+
+const savedcitieshey = document.querySelector(".saved-city");
+
+// savedcitieshey.addEventListener('click',()=>{
+//     fetchSearchWeatherInfo();
+// })
 
 
 
