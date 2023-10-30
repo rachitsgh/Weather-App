@@ -1,6 +1,6 @@
 # Weather App
 
-![Weather App](weather.png)
+![Weather App](./assets/weather.png)
 
 Weather App is a simple web application that allows users to check the weather conditions for a specific location. Users can search for a city and get real-time weather information, including temperature, humidity, wind speed, and more.
 
