@@ -16,6 +16,8 @@ const savedCitiesSection = document.querySelector(".my-cities");
 const apiErrorImg = document.querySelector("[data-notFoundImg]");
 const apiErrorMessage = document.querySelector("[data-apiErrorText]");
 const apiErrorBtn = document.querySelector("[data-apiErrorBtn]");
+const savedcitieshey = document.querySelector(".saved-city");
+
 
 
 
@@ -301,11 +303,6 @@ function displaySavedCities() {
 // Call the function to display saved cities when the page loads
 displaySavedCities();
 
-const savedcitieshey = document.querySelector(".saved-city");
-
-// savedcitieshey.addEventListener('click',()=>{
-//     fetchSearchWeatherInfo();
-// })
 
 
 
