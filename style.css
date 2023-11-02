@@ -12,7 +12,13 @@
     --colorLight2: #F9F7F7;
 }
 .wrapper{
-    background-image: linear-gradient(160deg, #112d4e 0%, #3f72af 100%);;
+    background-image: linear-gradient(160deg, #112d4e 0%, #3f72af 100%);
+    height: 100rem;
+    overflow: hidden;
+    width: 100vw;
+    color: var(--colorLight2);
+    display: flex;
+    justify-content: center;
 }
 
 .tab.current-tab{
@@ -375,5 +381,10 @@
     }
     /* Add more responsive styles for parameters as needed */
 }
-
+.button-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2;
+}
 /* Add more media queries for other screen sizes as required */
