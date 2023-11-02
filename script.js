@@ -88,8 +88,8 @@ function getfromSessionStorage() {
         // getfromSessionStorage();
     }
     else {
-        console.log("else");
         const coordinates = JSON.parse(localCoordinates);
+        // console.log(coordinates);
         fetchUserWeatherInfo(coordinates);
     }
 
@@ -154,6 +154,7 @@ function getLocation(){
     if(navigator.geolocation){
         navigator.geolocation.getCurrentPosition(showPositon);
     }else{
+        alert("geo locatio is not supported in you device");
         // show an alert for no geo location support available
     }
 }
@@ -215,7 +216,6 @@ saveCityButton2.addEventListener('click',()=>{
 });
 
 function save() {
-    console.log("nor on dave functn");
     // Fetch the city name and temperature
     const cityNameElement = document.querySelector("[data-cityName]");
     const cityName = cityNameElement.textContent;
@@ -266,8 +266,6 @@ async function displaySavedCityWeather(cityName) {
             removeSavedCity(cityName, savedCityElement);
         });
 
-// Append the delete button to the savedCityElement
-savedCityElement.appendChild(deleteButton);
 
         // Append the elements to the savedCityElement
         savedCityElement.appendChild(cityNameDiv);
@@ -302,7 +300,7 @@ function displaySavedCities() {
 
 // Call the function to display saved cities when the page loads
 displaySavedCities();
-
+ 
 
 
 
